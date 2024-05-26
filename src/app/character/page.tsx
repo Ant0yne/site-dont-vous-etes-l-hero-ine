@@ -1,5 +1,5 @@
 const PageCharacter = () => {
-	return <div>PageCharacter (une modal serait bien)</div>;
+	return <div>CharacterSheet </div>;
 };
 
 export default PageCharacter;
