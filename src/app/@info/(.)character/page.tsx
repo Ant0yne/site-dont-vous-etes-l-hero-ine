@@ -1,12 +1,12 @@
 import CharterSheet from "@/components/CharacterSheet";
-import ModalC from "./modal";
+import Modal from "@/components/Modal/Modal";
 
 const ModalCharacter = () => {
 	return (
-		<ModalC>
+		<Modal>
 			<p>c'est moi la modal</p>
 			<CharterSheet />
-		</ModalC>
+		</Modal>
 	);
 };
 

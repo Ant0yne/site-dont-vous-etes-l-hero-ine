@@ -1,5 +1,5 @@
-const CatchAllCharacter = () => {
+const CatchAllInfo = () => {
 	return null;
 };
 
-export default CatchAllCharacter;
+export default CatchAllInfo;

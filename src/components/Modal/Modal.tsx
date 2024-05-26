@@ -1,11 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-const ModalC = ({ children }: { children: React.ReactNode }) => {
+const Modal = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const dialogRef = useRef<React.ElementRef<"dialog">>(null);
 
@@ -25,13 +23,9 @@ const ModalC = ({ children }: { children: React.ReactNode }) => {
 				onClose={router.back}
 				className="backdrop:bg-black backdrop:backdrop-blur-sm">
 				<div>{children}</div>
-				{/* <Link href="/">
-					<Button>Fermer</Button>
-				</Link> */}
 			</dialog>
-			<p>salut</p>
 		</>
 	);
 };
 
-export default ModalC;
+export default Modal;

@@ -15,9 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	info,
+	monitor,
 	children,
 }: Readonly<{
 	info: React.ReactNode;
+	monitor: React.ReactNode;
 	children: React.ReactNode;
 }>) {
 	return (
@@ -25,6 +27,7 @@ export default function RootLayout({
 			<body className={`${inter.className} min-h-screen flex flex-col mx-auto`}>
 				<RootHeader />
 				<div>{children}</div>
+				<div>{monitor}</div>
 				<div>{info}</div>
 				<RootFooter />
 			</body>

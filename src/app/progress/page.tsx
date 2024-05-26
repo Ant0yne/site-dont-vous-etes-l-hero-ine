@@ -1,5 +1,7 @@
+import Progress from "@/components/Progress";
+
 const PageProgress = () => {
-	return <div>PageProgress (une modal serait bien)</div>;
+	return <Progress />;
 };
 
 export default PageProgress;
