@@ -5,7 +5,6 @@ import "./globals.css";
 import RootHeader from "@/components/Header";
 import RootFooter from "@/components/Footer";
 import React from "react";
-import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +24,8 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${inter.className} min-h-screen flex flex-col mx-auto`}>
 				<RootHeader />
-				<Link href="/character">Open</Link>
-				<div>{info}</div>
 				<div>{children}</div>
+				<div>{info}</div>
 				<RootFooter />
 			</body>
 		</html>

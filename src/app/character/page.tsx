@@ -1,5 +1,12 @@
+import CharterSheet from "@/components/CharacterSheet";
+
 const PageCharacter = () => {
-	return <div>CharacterSheet </div>;
+	return (
+		<main>
+			<p>CharacterSheet page</p>
+			<CharterSheet />
+		</main>
+	);
 };
 
 export default PageCharacter;
