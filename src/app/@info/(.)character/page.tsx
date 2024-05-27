@@ -1,7 +1,7 @@
 import CharterSheet from "@/components/CharacterSheet";
 import Modal from "@/components/Modal/Modal";
 
-const ModalCharacter = () => {
+const ModalCharacter = async () => {
 	return (
 		<Modal>
 			<p>c'est moi la modal</p>
