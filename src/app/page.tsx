@@ -22,7 +22,7 @@ export default function Home() {
 				bienvenu-e !
 			</p>
 			<Link
-				href={`/adventure/${cookieStore.get("path_id")?.value || "1"}`}
+				href={`/adventure/${cookieStore.get("step_id")?.value || "1"}`}
 				className="flex flex-col items-center">
 				<Button>Commencer l'aventure</Button>
 			</Link>
