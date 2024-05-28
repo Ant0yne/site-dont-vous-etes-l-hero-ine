@@ -1,5 +1,5 @@
 const RootNotFound = () => {
-	return <div>RootNotFound</div>;
+	return <main>RootNotFound</main>;
 };
 
 export default RootNotFound;

@@ -4,7 +4,6 @@ import Modal from "@/components/Modal/Modal";
 const ModalProgress = () => {
 	return (
 		<Modal>
-			<p>c'est moi la modal</p>
 			<Progress />
 		</Modal>
 	);
