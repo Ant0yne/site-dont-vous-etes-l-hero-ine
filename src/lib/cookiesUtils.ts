@@ -1,8 +1,9 @@
 "use server";
-
 import { cookies } from "next/headers";
-const cookieStore = cookies();
 
-const GetPathIdCookie = () => {};
+const SetPathIdCookie = async (params: string) => {
+	const cookieStore = cookies();
+	await cookieStore.set("step_id", params);
+};
 
-export { GetPathIdCookie };
+export { SetPathIdCookie };
