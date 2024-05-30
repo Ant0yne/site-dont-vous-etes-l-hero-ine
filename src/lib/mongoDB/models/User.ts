@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 interface IUser {
 	token: string;
@@ -11,4 +11,6 @@ const userSchema = new Schema<IUser>({
 	},
 });
 
-const User = model<IUser>("User", userSchema);
+const User = mongoose.models.Step || model<IUser>("User", userSchema);
+
+export default User;
