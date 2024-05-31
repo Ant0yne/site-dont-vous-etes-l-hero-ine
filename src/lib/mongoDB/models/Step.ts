@@ -1,36 +1,31 @@
+import { TStep } from "@/lib/types";
 import mongoose, { Schema, model } from "mongoose";
 
-type NextStep = {
-	description: string;
-	stepNum: number;
-};
-
-interface IStep {
-	stepNum: number;
-	image: string;
-	description: string;
-	nextSteps: NextStep[];
-}
-
-const stepSchema = new Schema<IStep>({
+const stepSchema = new Schema<TStep>({
 	stepNum: {
 		type: Number,
 		required: true,
 	},
 	image: {
-		type: String,
-		required: false,
+		type: Schema.Types.Mixed,
+		required: true,
+		default: null,
 	},
 	description: {
 		type: String,
 		required: true,
 	},
 	nextSteps: {
-		type: [{ String, Number }],
+		type: [
+			{
+				description: { type: String },
+				stepNum: { type: Number },
+			},
+		],
 		required: false,
 	},
 });
 
-const Step = mongoose.models.Step || model<IStep>("Step", stepSchema);
+const Step = mongoose.models.Step || model<TStep>("Step", stepSchema);
 
 export default Step;
