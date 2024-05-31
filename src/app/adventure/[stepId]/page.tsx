@@ -11,7 +11,7 @@ const PageAdventureStep = async ({
 	params: { stepId: "string" };
 }) => {
 	let step: unknown;
-	// FIXME: type should beTVal<TStep> but error "ts(2454) Variable 'stepValidate' is used before being assigned"
+	// FIXME: type should be TVal<TStep> but error "ts(2454) Variable 'stepValidate' is used before being assigned"
 	let stepValidate: any;
 	try {
 		await dbConnect();
