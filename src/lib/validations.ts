@@ -1,15 +1,23 @@
 import { z } from "zod";
 
+export const stepsZod = z.object({
+	description: z.string(),
+	nextStepNum: z.number(),
+});
+
+export const testZod = z.object({
+	type: z.string(),
+	objectif: z.number(),
+	successStep: z.number(),
+	failStep: z.number(),
+});
+
 export const stepZod = z.object({
 	stepNum: z.number(),
-	image: z.null(),
+	image: z.object({}).nullable(),
 	description: z.string(),
-	nextSteps: z.optional(
-		z.array(
-			z.object({
-				description: z.string(),
-				stepNum: z.number(),
-			})
-		)
-	),
+	nextSteps: z.object({
+		steps: z.optional(z.array(stepsZod)),
+		test: z.optional(testZod),
+	}),
 });

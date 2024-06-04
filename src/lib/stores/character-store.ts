@@ -1,13 +1,11 @@
 //cSpell: words zustand
 
-import { createStore } from "zustand";
+import { create } from "zustand";
 
 export type CharacterState = {
-	dex: number;
+	DEX: number;
 };
 
-export const createCharacterStore = () => {
-	return createStore<CharacterState>()((set) => ({
-		dex: 6,
-	}));
-};
+export const useCharacterStore = create<CharacterState>()((set) => ({
+	DEX: 2,
+}));

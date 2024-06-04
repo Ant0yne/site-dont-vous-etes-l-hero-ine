@@ -1,28 +1,38 @@
-import { TStep } from "@/lib/types";
+import { TStep, TStepSteps, TStepTest } from "@/lib/types";
 import mongoose, { Schema, model } from "mongoose";
+
+const stepsSchema = new Schema<TStepSteps>({
+	description: { type: String },
+	nextStepNum: { type: Number },
+});
+
+const testSchema = new Schema<TStepTest>({
+	type: { type: String },
+	objectif: { type: Number },
+	successStep: { type: Number },
+	failStep: { type: Number },
+});
 
 const stepSchema = new Schema<TStep>({
 	stepNum: {
 		type: Number,
-		required: true,
+		required: [true, "stepNum is required"],
 	},
 	image: {
 		type: Schema.Types.Mixed,
-		required: true,
+		required: [true, "image is required"],
 		default: null,
 	},
 	description: {
 		type: String,
-		required: true,
+		required: [true, "description is required"],
 	},
 	nextSteps: {
-		type: [
-			{
-				description: { type: String },
-				stepNum: { type: Number },
-			},
-		],
-		required: false,
+		steps: { type: [stepsSchema], required: false },
+		test: {
+			type: testSchema,
+			required: false,
+		},
 	},
 });
 

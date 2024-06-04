@@ -12,7 +12,6 @@ export function middleware(req: NextRequest) {
 		});
 		return response;
 	}
-
 	return null;
 }
 
