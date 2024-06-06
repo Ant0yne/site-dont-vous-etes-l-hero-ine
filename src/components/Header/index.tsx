@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { BookOpenText, TableProperties, Waypoints } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-const RootHeader = () => {
+const RootHeader = async () => {
+	const session = await getServerSession(authOptions);
 	return (
 		<header className="flex border-b p-2 mb-1">
 			<Link href="/">
@@ -34,10 +37,18 @@ const RootHeader = () => {
 				</Link>
 
 				<div>
-					<Link href="/login">
-						<Button>Se connecter</Button>
-					</Link>
-					<Button variant="secondary">S'inscrire</Button>
+					{session ? (
+						<Link href="/login">
+							<Button>Profile</Button>
+						</Link>
+					) : (
+						<>
+							<Link href="/login">
+								<Button>Se connecter</Button>
+							</Link>
+							<Button variant="secondary">S'inscrire</Button>
+						</>
+					)}
 				</div>
 			</nav>
 		</header>
