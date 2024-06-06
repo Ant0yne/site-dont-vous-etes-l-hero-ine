@@ -18,11 +18,13 @@ export default function RootLayout({
 	info,
 	monitor,
 	historic,
+	log,
 	children,
 }: Readonly<{
 	info: React.ReactNode;
 	monitor: React.ReactNode;
 	historic: React.ReactNode;
+	log: React.ReactNode;
 	children: React.ReactNode;
 }>) {
 	return (
@@ -34,6 +36,7 @@ export default function RootLayout({
 					<div>{monitor}</div>
 					<div>{info}</div>
 					<div>{historic}</div>
+					<div>{log}</div>
 					<RootFooter />
 				</NextAuthProvider>
 			</body>

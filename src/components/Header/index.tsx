@@ -34,7 +34,9 @@ const RootHeader = () => {
 				</Link>
 
 				<div>
-					<Button>Se connecter</Button>
+					<Link href="/login">
+						<Button>Se connecter</Button>
+					</Link>
 					<Button variant="secondary">S'inscrire</Button>
 				</div>
 			</nav>
