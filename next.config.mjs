@@ -9,6 +9,10 @@ const nextConfig = {
 				hostname: "res.cloudinary.com",
 				pathname: "/dxyptix0d/image/upload/**",
 			},
+			{
+				protocol: "https",
+				hostname: "lh3.googleusercontent.com",
+			},
 		],
 	},
 };
