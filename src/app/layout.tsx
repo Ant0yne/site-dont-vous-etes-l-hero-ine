@@ -5,6 +5,7 @@ import "./globals.css";
 import RootHeader from "@/components/Header";
 import RootFooter from "@/components/Footer";
 import React from "react";
+import NextAuthProvider from "@/components/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,12 +28,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${inter.className} min-h-screen flex flex-col mx-auto`}>
-				<RootHeader />
-				<div>{children}</div>
-				<div>{monitor}</div>
-				<div>{info}</div>
-				<div>{historic}</div>
-				<RootFooter />
+				<NextAuthProvider>
+					<RootHeader />
+					<div>{children}</div>
+					<div>{monitor}</div>
+					<div>{info}</div>
+					<div>{historic}</div>
+					<RootFooter />
+				</NextAuthProvider>
 			</body>
 		</html>
 	);
