@@ -3,9 +3,16 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SignInGoogle = () => {
 	const { status, data } = useSession();
+	const router = useRouter();
+
+	const handleSignOut = async () => {
+		const path = await signOut({ redirect: false, callbackUrl: "/" });
+		router.push(path.url);
+	};
 
 	return (
 		<>
@@ -17,7 +24,7 @@ const SignInGoogle = () => {
 						height={50}
 						alt="Your profile picture"
 					/>
-					<Button onClick={() => signOut()}>Sign out</Button>
+					<Button onClick={handleSignOut}>Sign out</Button>
 				</div>
 			) : (
 				<Button onClick={() => signIn("google")}>Sign in with Google</Button>
