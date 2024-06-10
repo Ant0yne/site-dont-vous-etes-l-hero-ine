@@ -7,5 +7,7 @@ export async function POST(req: Request) {
 		await dbConnect();
 		await User.create({ username: name });
 		return Response.json(`${name} is now register`, { status: 200 });
-	} catch (error) {}
+	} catch (error) {
+		console.error("Error when creating user in DB", error);
+	}
 }
