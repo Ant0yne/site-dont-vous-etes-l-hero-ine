@@ -28,6 +28,7 @@ export const stepZod = z.object({
 
 export const userZod = z.object({
 	username: z.string(),
+	email: z.string(),
 	createdAt: z.date(),
 	updatedAt: z.date(),
 });

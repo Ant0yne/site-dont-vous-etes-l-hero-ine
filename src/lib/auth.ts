@@ -12,14 +12,17 @@ export const authOptions = {
 	// FIXME: param types
 	callbacks: {
 		async signIn({ user, account }: { user: any; account: any }) {
+			console.log("user ===>", user);
+			console.log("account ===>", account);
+
 			if (account.provider === "google") {
-				const { name } = user;
+				const { name, email } = user;
 
 				try {
 					await dbConnect();
 
 					const userFound = await User.findOne({
-						username: name,
+						email,
 					});
 
 					if (!userFound) {
@@ -30,6 +33,7 @@ export const authOptions = {
 							},
 							body: JSON.stringify({
 								username: name,
+								email,
 							}),
 						});
 						// if (res.ok) {
