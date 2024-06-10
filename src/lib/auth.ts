@@ -1,7 +1,6 @@
-import { Account, User } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
-import { use } from "react";
+import dbConnect from "./mongoDB/dbConnect";
+import User from "./mongoDB/models/User";
 
 export const authOptions = {
 	providers: [
@@ -17,20 +16,28 @@ export const authOptions = {
 				const { name } = user;
 
 				try {
-					const res = await fetch(`${process.env.API_LINK}/api/user`, {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							username: name,
-						}),
+					await dbConnect();
+
+					const userFound = await User.findOne({
+						username: name,
 					});
-					if (res.ok) {
-						return user;
+
+					if (!userFound) {
+						const res = await fetch(`${process.env.API_LINK}/api/user`, {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								username: name,
+							}),
+						});
+						// if (res.ok) {
+						// 	return user;
+						// }
 					}
 				} catch (error) {
-					console.error("Impossible to sign in with Google provider", error);
+					return console.error("Impossible to sign in", error);
 				}
 			}
 			return user;
