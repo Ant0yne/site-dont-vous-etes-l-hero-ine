@@ -1,5 +1,5 @@
 import { TStep, TStepSteps, TStepTest } from "@/lib/types";
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const stepsSchema = new Schema<TStepSteps>({
 	description: { type: String },
@@ -36,6 +36,6 @@ const stepSchema = new Schema<TStep>({
 	},
 });
 
-const Step = mongoose.models.Step || model<TStep>("Step", stepSchema);
+const Step = models.Step || model<TStep>("Step", stepSchema);
 
 export default Step;

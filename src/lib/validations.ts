@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+// STEPS
+
 export const stepsZod = z.object({
 	description: z.string(),
 	nextStepNum: z.number(),
@@ -20,4 +22,10 @@ export const stepZod = z.object({
 		steps: z.optional(z.array(stepsZod)),
 		test: z.optional(testZod),
 	}),
+});
+
+// USER
+
+export const userZod = z.object({
+	username: z.string(),
 });
