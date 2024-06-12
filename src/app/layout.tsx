@@ -15,15 +15,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-	info,
-	monitor,
-	historic,
+	// info,
+	// monitor,
+	// historic,
 	log,
 	children,
 }: Readonly<{
-	info: React.ReactNode;
-	monitor: React.ReactNode;
-	historic: React.ReactNode;
+	// info: React.ReactNode;
+	// monitor: React.ReactNode;
+	// historic: React.ReactNode;
 	log: React.ReactNode;
 	children: React.ReactNode;
 }>) {
@@ -33,9 +33,9 @@ export default function RootLayout({
 				<NextAuthProvider>
 					<RootHeader />
 					<div>{children}</div>
-					<div>{monitor}</div>
+					{/* <div>{monitor}</div>
 					<div>{info}</div>
-					<div>{historic}</div>
+					<div>{historic}</div>*/}
 					<div>{log}</div>
 					<RootFooter />
 				</NextAuthProvider>
