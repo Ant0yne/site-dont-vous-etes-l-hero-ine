@@ -1,16 +1,24 @@
 "use client";
 
-import React, { useEffect } from "react";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import { useConnectionStore } from "@/lib/stores/connection-store";
 
-const SignLog = ({ path }: { path: string }) => {
-	const router = useRouter();
+const SignLog = () => {
+	const connecPath = useConnectionStore((state) => state.connectionPath);
+	const setConnectionPath = useConnectionStore(
+		(state) => state.saveConnectionPath
+	);
+
+	const handleConnectionPath = () => {
+		connecPath === "signup"
+			? setConnectionPath("login")
+			: setConnectionPath("signup");
+	};
 
 	return (
 		<div>
-			<Button onClick={() => router.push(`${path}`)}>
-				{path === "signup" ? "S'inscrire" : "Se connecter"}
+			<Button onClick={handleConnectionPath}>
+				{connecPath === "signup" ? "S'inscrire" : "Se connecter"}
 			</Button>
 		</div>
 	);

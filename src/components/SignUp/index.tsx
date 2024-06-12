@@ -1,13 +1,12 @@
-import SignUpForm from "@/components/SingUpForm";
-import SignLog from "../SignLog";
+"use client";
 
-const SignUp = () => {
-	return (
-		<>
-			<SignUpForm />
-			<SignLog path={"login"} />
-		</>
-	);
+import { useConnectionStore } from "@/lib/stores/connection-store";
+import SignUpForm from "../SingUpForm";
+
+const Signup = () => {
+	const connectionPath = useConnectionStore((state) => state.connectionPath);
+
+	return <div>{connectionPath === "signup" ? <SignUpForm /> : null}</div>;
 };
 
-export default SignUp;
+export default Signup;

@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { BookOpenText, TableProperties, Waypoints } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import SignLogButton from "../SignLogButton";
+import HeaderSignLogButton from "../HeaderSignLogButton";
 
 const RootHeader = async () => {
 	const session = await getServerSession(authOptions);
@@ -46,7 +46,7 @@ const RootHeader = async () => {
 						</Link>
 					</div>
 				) : (
-					<SignLogButton />
+					<HeaderSignLogButton />
 				)}
 			</nav>
 		</header>

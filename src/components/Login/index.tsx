@@ -1,13 +1,11 @@
-import SignInGoogle from "@/components/SignInGoogle";
-import SignLog from "../SignLog";
+"use client";
+
+import { useConnectionStore } from "@/lib/stores/connection-store";
+import SignInGoogle from "../SignInGoogle";
 
 const Login = () => {
-	return (
-		<>
-			<SignInGoogle />
-			<SignLog path={"signup"} />
-		</>
-	);
+	const connectionPath = useConnectionStore((state) => state.connectionPath);
+	return <div>{connectionPath === "login" ? <SignInGoogle /> : null}</div>;
 };
 
 export default Login;
