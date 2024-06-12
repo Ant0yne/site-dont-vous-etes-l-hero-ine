@@ -1,3 +1,5 @@
+// cSpell: words signup
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -46,7 +48,9 @@ const RootHeader = async () => {
 							<Link href="/login">
 								<Button>Se connecter</Button>
 							</Link>
-							<Button variant="secondary">S'inscrire</Button>
+							<Link href="/signup">
+								<Button>S'inscrire</Button>
+							</Link>
 						</>
 					)}
 				</div>
