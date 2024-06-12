@@ -18,7 +18,7 @@ const SignLog = () => {
 	return (
 		<div>
 			<Button onClick={handleConnectionPath}>
-				{connecPath === "signup" ? "S'inscrire" : "Se connecter"}
+				{connecPath === "signup" ? "Se connecter" : "S'inscrire"}
 			</Button>
 		</div>
 	);
