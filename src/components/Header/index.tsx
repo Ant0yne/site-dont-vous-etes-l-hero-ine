@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { BookOpenText, TableProperties, Waypoints } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import SignLogButton from "../SignLogButton";
 
 const RootHeader = async () => {
 	const session = await getServerSession(authOptions);
@@ -38,22 +39,15 @@ const RootHeader = async () => {
 					</Button>
 				</Link>
 
-				<div>
-					{session ? (
+				{session ? (
+					<div>
 						<Link href="/login">
 							<Button>Profile</Button>
 						</Link>
-					) : (
-						<>
-							<Link href="/login">
-								<Button>Se connecter</Button>
-							</Link>
-							<Link href="/signup">
-								<Button>S'inscrire</Button>
-							</Link>
-						</>
-					)}
-				</div>
+					</div>
+				) : (
+					<SignLogButton />
+				)}
 			</nav>
 		</header>
 	);

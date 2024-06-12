@@ -22,7 +22,6 @@ const PageAdventureStep = async ({
 	try {
 		await dbConnect();
 		step = await Step.findOne({ stepNum: params.stepId });
-		console.log("====>", step?.nextSteps);
 	} catch (error: any) {
 		console.error({ message: error.message });
 	}
@@ -38,7 +37,6 @@ const PageAdventureStep = async ({
 	// 		console.error(temp.error);
 	// 	} else {
 	// 		stepValidate = temp;
-	// 		console.log("=========>", stepValidate.data.nextSteps);
 	// 	}
 	// }
 

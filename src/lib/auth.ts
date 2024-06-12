@@ -12,9 +12,6 @@ export const authOptions = {
 	// FIXME: param types
 	callbacks: {
 		async signIn({ user, account }: { user: any; account: any }) {
-			console.log("user ===>", user);
-			console.log("account ===>", account);
-
 			if (account.provider === "google") {
 				const { name, email } = user;
 
