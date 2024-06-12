@@ -1,12 +1,10 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { signIn, useSession } from "next-auth/react";
 
-const SignInGoogle = () => {
+const Profile = () => {
 	const { status, data } = useSession();
-
 	return (
 		<>
 			{status === "authenticated" ? (
@@ -19,12 +17,10 @@ const SignInGoogle = () => {
 					/>
 				</div>
 			) : (
-				<Button onClick={() => signIn("google", { callbackUrl: "/" })}>
-					Sign in with Google
-				</Button>
+				<div>Profile</div>
 			)}
 		</>
 	);
 };
 
-export default SignInGoogle;
+export default Profile;

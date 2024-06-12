@@ -23,24 +23,18 @@ const RootHeader = async () => {
 			</Link>
 
 			<nav>
-				<Link href="/path">
-					<Button variant="outline">
-						<Waypoints strokeWidth="1" className="mr-2" /> Chemins suivis
-					</Button>
-				</Link>
-				<Link href="/progress">
-					<Button variant="outline">
-						<BookOpenText strokeWidth="1" className="mr-2" /> Progression
-					</Button>
-				</Link>
-				<Link href="/character">
-					<Button variant="outline">
-						<TableProperties strokeWidth="1" className="mr-2" />
-						Fiche de Personnage
-					</Button>
-				</Link>
-
-				{session ? <LogoutButton /> : <HeaderSignLogButton />}
+				{session ? (
+					<>
+						<Link href="/profile">
+							<Button variant="outline">
+								<Waypoints strokeWidth="1" className="mr-2" /> Profile
+							</Button>
+						</Link>
+						<LogoutButton />
+					</>
+				) : (
+					<HeaderSignLogButton />
+				)}
 			</nav>
 		</header>
 	);
