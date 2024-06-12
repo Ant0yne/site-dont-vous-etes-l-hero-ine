@@ -1,10 +1,10 @@
 import Modal from "@/components/Modal/Modal";
-import SignUpForm from "@/components/SingUpForm";
+import SignUp from "@/components/SignUp";
 
 const ModalSignup = () => {
 	return (
 		<Modal>
-			<SignUpForm />
+			<SignUp />
 		</Modal>
 	);
 };

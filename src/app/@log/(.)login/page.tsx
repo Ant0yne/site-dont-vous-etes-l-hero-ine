@@ -1,10 +1,10 @@
+import Login from "@/components/Login";
 import Modal from "@/components/Modal/Modal";
-import SignInGoogle from "@/components/SignInGoogle";
 
 const ModalLogin = () => {
 	return (
 		<Modal>
-			<SignInGoogle />
+			<Login />
 		</Modal>
 	);
 };

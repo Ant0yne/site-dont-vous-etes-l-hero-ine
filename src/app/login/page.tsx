@@ -1,9 +1,9 @@
-import SignInGoogle from "@/components/SignInGoogle";
+import Login from "@/components/Login";
 
 const PageLogin = () => {
 	return (
 		<main>
-			<SignInGoogle />
+			<Login />
 		</main>
 	);
 };
