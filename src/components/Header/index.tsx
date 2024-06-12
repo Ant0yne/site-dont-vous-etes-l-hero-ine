@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { BookOpenText, TableProperties, Waypoints } from "lucide-react";
+import { BookOpenText, LogOut, TableProperties, Waypoints } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import HeaderSignLogButton from "../HeaderSignLogButton";
+import LogoutButton from "../LogoutButton";
 
 const RootHeader = async () => {
 	const session = await getServerSession(authOptions);
@@ -39,15 +40,7 @@ const RootHeader = async () => {
 					</Button>
 				</Link>
 
-				{session ? (
-					<div>
-						<Link href="/login">
-							<Button>Profile</Button>
-						</Link>
-					</div>
-				) : (
-					<HeaderSignLogButton />
-				)}
+				{session ? <LogoutButton /> : <HeaderSignLogButton />}
 			</nav>
 		</header>
 	);
