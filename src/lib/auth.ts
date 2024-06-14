@@ -23,7 +23,7 @@ export const authOptions = {
 					});
 
 					if (!userFound) {
-						const res = await fetch(`${process.env.API_LINK}/api/user`, {
+						const res = await fetch(`${process.env.API_LINK}/api/register`, {
 							method: "POST",
 							headers: {
 								"Content-Type": "application/json",
