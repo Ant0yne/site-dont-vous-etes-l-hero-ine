@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "../ui/button";
 
 const SignUpForm = () => {
-	const [characName, setCharacName] = useState("");
+	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -12,7 +12,7 @@ const SignUpForm = () => {
 	const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 
-		if (!characName || !email || !password) {
+		if (!username || !email || !password) {
 			setError("Tous les champs doivent être remplis");
 			return;
 		}
@@ -26,10 +26,11 @@ const SignUpForm = () => {
 			<form onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}>
 				<input
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
-						setCharacName(e.target.value)
+						setUsername(e.target.value)
 					}
 					type="text"
 					placeholder="Character Name"
+					value={username}
 				/>
 				<input
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -37,6 +38,7 @@ const SignUpForm = () => {
 					}
 					type="email"
 					placeholder="Email"
+					value={email}
 				/>
 				<input
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -44,6 +46,7 @@ const SignUpForm = () => {
 					}
 					type="password"
 					placeholder="Password"
+					value={password}
 				/>
 				<Button>Créer le compte</Button>
 			</form>

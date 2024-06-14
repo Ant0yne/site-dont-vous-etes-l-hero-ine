@@ -2,7 +2,7 @@ import dbConnect from "@/lib/mongoDB/dbConnect";
 import User from "@/lib/mongoDB/models/User";
 
 export async function POST(req: Request) {
-	const { username, email } = await req.json();
+	const { username, email, password } = await req.json();
 
 	try {
 		await dbConnect();
