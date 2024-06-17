@@ -9,14 +9,41 @@ const SignUpForm = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (!username || !email || !password) {
 			setError("Tous les champs doivent être remplis");
 			return;
 		}
-		console.log("ok");
+		try {
+			const res = await fetch(
+				`${process.env.NEXT_PUBLIC_API_LINK}/api/register`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						username,
+						email,
+					}),
+				}
+			);
+
+			console.log(res);
+
+			if (res.ok) {
+				setUsername("");
+				setEmail("");
+				setPassword("");
+				console.log(res.statusText);
+			} else {
+				console.error(res.statusText);
+			}
+		} catch (error) {
+			console.error("Something went wrong during registration", error);
+		}
 	};
 
 	return (

@@ -16,27 +16,19 @@ export const authOptions = {
 				const { name, email } = user;
 
 				try {
-					await dbConnect();
-
-					const userFound = await User.findOne({
-						email,
+					const res = await fetch(`${process.env.API_LINK}/api/register`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							username: name,
+							email,
+						}),
 					});
-
-					if (!userFound) {
-						const res = await fetch(`${process.env.API_LINK}/api/register`, {
-							method: "POST",
-							headers: {
-								"Content-Type": "application/json",
-							},
-							body: JSON.stringify({
-								username: name,
-								email,
-							}),
-						});
-						// if (res.ok) {
-						// 	return user;
-						// }
-					}
+					// if (res.ok) {
+					// 	return user;
+					// }
 				} catch (error) {
 					return console.error("Impossible to sign in", error);
 				}
