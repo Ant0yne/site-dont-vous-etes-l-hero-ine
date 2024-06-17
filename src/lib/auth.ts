@@ -24,11 +24,14 @@ export const authOptions = {
 						body: JSON.stringify({
 							username: name,
 							email,
+							password: "",
 						}),
 					});
-					// if (res.ok) {
-					// 	return user;
-					// }
+					if (res.ok) {
+						console.log(res.statusText);
+					} else {
+						console.error(res.statusText);
+					}
 				} catch (error) {
 					return console.error("Impossible to sign in", error);
 				}

@@ -27,11 +27,10 @@ const SignUpForm = () => {
 					body: JSON.stringify({
 						username,
 						email,
+						password,
 					}),
 				}
 			);
-
-			console.log(res);
 
 			if (res.ok) {
 				setUsername("");
