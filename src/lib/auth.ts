@@ -16,21 +16,36 @@ export const authOptions = {
 				const { name, email } = user;
 
 				try {
-					const res = await fetch(`${process.env.API_LINK}/api/register`, {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							username: name,
-							email,
-							password: "",
-						}),
-					});
-					if (res.ok) {
-						console.log(res.statusText);
-					} else {
-						console.error(res.statusText);
+					const userSearch = await fetch(
+						`${process.env.API_LINK}/api/userExists`,
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({ email }),
+						}
+					);
+
+					const { userFound } = await userSearch.json();
+
+					if (!userFound) {
+						const res = await fetch(`${process.env.API_LINK}/api/register`, {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								username: name,
+								email,
+								password: "",
+							}),
+						});
+						if (res.ok) {
+							console.log(res.statusText);
+						} else {
+							console.error(res.statusText);
+						}
 					}
 				} catch (error) {
 					return console.error("Impossible to sign in", error);

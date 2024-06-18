@@ -11,26 +11,39 @@ const SignUpForm = () => {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setError("");
 
 		if (!username || !email || !password) {
 			setError("Tous les champs doivent être remplis");
 			return;
 		}
 		try {
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_API_LINK}/api/register`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						username,
-						email,
-						password,
-					}),
-				}
-			);
+			const userSearch = await fetch("api/userExists", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email }),
+			});
+
+			const { userFound } = await userSearch.json();
+
+			if (userFound) {
+				setError("User already exists.");
+				return;
+			}
+
+			const res = await fetch("/api/register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					username,
+					email,
+					password,
+				}),
+			});
 
 			if (res.ok) {
 				setUsername("");
