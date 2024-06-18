@@ -12,10 +12,11 @@ const Profile = () => {
 		<>
 			{status === "authenticated" ? (
 				<>
+					<p>{data?.user?.email}</p>
 					{data?.user?.image ? (
 						<div>
 							<Image
-								src={data.user.image!}
+								src={data.user.image}
 								width={50}
 								height={50}
 								alt="Your profile picture"

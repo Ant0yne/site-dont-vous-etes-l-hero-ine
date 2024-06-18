@@ -11,18 +11,11 @@ export const authOptions = {
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		}),
 		CredentialsProvider({
-			name: "Identifiants",
-			credentials: {
-				email: { label: "Email", type: "email", placeholder: "Votre email" },
-				password: {
-					label: "Password",
-					type: "password",
-					placeholder: "Votre password",
-				},
-			},
-			async authorize(credentials) {
-				// FIXME: Types
-				const { email, password } = credentials!;
+			name: "identifiants",
+			credentials: {},
+			// FIXME: Types
+			async authorize(credentials: any) {
+				const { email, password } = credentials;
 				try {
 					await dbConnect();
 					const userFound = await User.findOne({ email });
@@ -85,9 +78,6 @@ export const authOptions = {
 				} catch (error) {
 					return console.error("Impossible to sign in", error);
 				}
-			}
-			if (account.provider === "credentials") {
-				console.log("yeah");
 			}
 			return user;
 		},

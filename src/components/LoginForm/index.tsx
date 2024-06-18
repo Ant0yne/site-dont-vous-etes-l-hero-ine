@@ -21,6 +21,8 @@ const LoginForm = () => {
 				redirect: false,
 			});
 
+			console.log(res);
+
 			if (res?.error) {
 				setError("Email ou Mot de passe erroné.");
 				return;
