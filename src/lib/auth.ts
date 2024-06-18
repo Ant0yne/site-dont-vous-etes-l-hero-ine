@@ -1,4 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
 	providers: [
@@ -6,7 +7,24 @@ export const authOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		}),
+		CredentialsProvider({
+			name: "Identifiants",
+			credentials: {
+				email: { label: "Email", type: "email", placeholder: "Votre email" },
+				password: {
+					label: "Password",
+					type: "password",
+					placeholder: "Votre password",
+				},
+			},
+			async authorize(credentials) {
+				const user = { id: "1" };
+				return user;
+			},
+		}),
 	],
+	secret: process.env.NEXTAUTH_SECRET,
+	pages: { signIn: "/connection" },
 	// FIXME: param types
 	callbacks: {
 		async signIn({ user, account }: { user: any; account: any }) {
