@@ -2,12 +2,15 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
+
+	const router = useRouter();
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -49,7 +52,7 @@ const SignUpForm = () => {
 				setUsername("");
 				setEmail("");
 				setPassword("");
-				console.log(res.statusText);
+				router.push("/profile");
 			} else {
 				console.error(res.statusText);
 			}

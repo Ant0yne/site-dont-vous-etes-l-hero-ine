@@ -1,6 +1,4 @@
 import GoogleProvider from "next-auth/providers/google";
-import dbConnect from "./mongoDB/dbConnect";
-import User from "./mongoDB/models/User";
 
 export const authOptions = {
 	providers: [
