@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 
 const Connection = () => {
 	const { status } = useSession();
+
 	return (
 		<>
 			{status === "authenticated" ? (

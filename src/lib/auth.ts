@@ -1,5 +1,8 @@
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import dbConnect from "./mongoDB/dbConnect";
+import User from "./mongoDB/models/User";
+import bcrypt from "bcryptjs";
 
 export const authOptions = {
 	providers: [
@@ -18,8 +21,24 @@ export const authOptions = {
 				},
 			},
 			async authorize(credentials) {
-				const user = { id: "1" };
-				return user;
+				// FIXME: Types
+				const { email, password } = credentials!;
+				try {
+					await dbConnect();
+					const userFound = await User.findOne({ email });
+
+					if (!userFound) {
+						return null;
+					} else {
+						const pwMatch = await bcrypt.compare(password, userFound.password);
+						if (!pwMatch) {
+							return null;
+						}
+						return userFound;
+					}
+				} catch (error) {
+					console.error(error);
+				}
 			},
 		}),
 	],
@@ -66,6 +85,9 @@ export const authOptions = {
 				} catch (error) {
 					return console.error("Impossible to sign in", error);
 				}
+			}
+			if (account.provider === "credentials") {
+				console.log("yeah");
 			}
 			return user;
 		},

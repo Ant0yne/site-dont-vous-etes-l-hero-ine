@@ -5,17 +5,24 @@ import Image from "next/image";
 
 const Profile = () => {
 	const { status, data } = useSession();
+	console.log("status ===>", status);
+	console.log("data ===>", data);
+
 	return (
 		<>
 			{status === "authenticated" ? (
-				<div>
-					<Image
-						src={data?.user?.image!}
-						width={50}
-						height={50}
-						alt="Your profile picture"
-					/>
-				</div>
+				<>
+					{data?.user?.image ? (
+						<div>
+							<Image
+								src={data.user.image!}
+								width={50}
+								height={50}
+								alt="Your profile picture"
+							/>
+						</div>
+					) : null}
+				</>
 			) : (
 				<div>Profile</div>
 			)}
