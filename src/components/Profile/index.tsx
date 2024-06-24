@@ -3,24 +3,25 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-import { UserState, useUserStore } from "@/lib/stores/user-store";
-import { useEffect } from "react";
+import { useUserStore } from "@/lib/stores/user-store";
 
-const Profile = ({ user }: { user: UserState | null }) => {
+const Profile = () => {
 	const { status, data } = useSession();
-	const setUser = useUserStore((state) => state.saveUser);
+	const username = useUserStore((state) => state.username);
+	const email = useUserStore((state) => state.email);
+	// const setUser = useUserStore((state) => state.saveUser);
 
-	useEffect(() => {
-		if (user?.username && user?.email && user?._id)
-			setUser({ username: user.username, email: user.email, _id: user._id });
-	}, []);
+	// useEffect(() => {
+	// 	if (user?.username && user?.email && user?._id)
+	// 		setUser({ username: user.username, email: user.email, _id: user._id });
+	// }, []);
 
 	return (
 		<>
 			{status === "authenticated" ? (
 				<>
-					<p>{user?.email}</p>
-					<p>{user?.username}</p>
+					<p>{email}</p>
+					<p>{username}</p>
 					{data?.user?.image ? (
 						<div>
 							<Image
