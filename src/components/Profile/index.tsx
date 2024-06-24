@@ -3,16 +3,18 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-const Profile = () => {
+import { UserState, useUserStore } from "@/lib/stores/user-store";
+
+const Profile = ({ user }: { user: UserState | null }) => {
 	const { status, data } = useSession();
-	console.log("status ===>", status);
-	console.log("data ===>", data);
+	console.log("data", data);
 
 	return (
 		<>
 			{status === "authenticated" ? (
 				<>
-					<p>{data?.user?.email}</p>
+					<p>{user?.email}</p>
+					<p>{user?.username}</p>
 					{data?.user?.image ? (
 						<div>
 							<Image

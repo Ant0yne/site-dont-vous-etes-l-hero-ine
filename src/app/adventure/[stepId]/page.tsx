@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import dbConnect from "@/lib/mongoDB/dbConnect";
 import Step from "@/lib/mongoDB/models/Step";
-import { stepZod } from "@/lib/validations";
+// import { stepZod } from "@/lib/validations";
 
 import { Button } from "@/components/ui/button";
 import CharacTest from "@/components/CharacTest";

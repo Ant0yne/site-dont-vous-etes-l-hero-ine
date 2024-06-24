@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { BookOpenText, LogOut, TableProperties, Waypoints } from "lucide-react";
+import { Waypoints } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import HeaderSignLogButton from "../HeaderSignLogButton";

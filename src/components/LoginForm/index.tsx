@@ -14,14 +14,13 @@ const LoginForm = () => {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setError("");
 		try {
 			const res = await signIn("credentials", {
 				email,
 				password,
 				redirect: false,
 			});
-
-			console.log(res);
 
 			if (res?.error) {
 				setError("Email ou Mot de passe erroné.");
@@ -30,7 +29,7 @@ const LoginForm = () => {
 				router.replace("/profile");
 			}
 		} catch (error) {
-			console.error(error);
+			console.error("test", error);
 		}
 	};
 

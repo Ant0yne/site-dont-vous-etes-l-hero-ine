@@ -7,10 +7,10 @@ export async function POST(req: Request) {
 		const { email } = await req.json();
 		const userFound = await User.findOne({
 			email,
-		}).select("username _id");
-		console.log(userFound);
+		}).select("email username _id");
 		return Response.json({ userFound });
 	} catch (error) {
 		console.error(error);
+		return Response.json({ error });
 	}
 }

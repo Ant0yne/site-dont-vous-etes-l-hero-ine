@@ -1,12 +1,41 @@
 import Profile from "@/components/Profile";
 import { Button } from "@/components/ui/button";
+import { authOptions } from "@/lib/auth";
+import dbConnect from "@/lib/mongoDB/dbConnect";
+import User from "@/lib/mongoDB/models/User";
+import { UserState } from "@/lib/stores/user-store";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 
-const PageProfile = () => {
+const PageProfile = async () => {
+	const session = await getServerSession(authOptions);
+	let user: UserState | null = null;
+
+	try {
+		await dbConnect();
+		const userFound = await User.findOne({
+			email: session?.user?.email,
+		}).select("username email _id");
+		if (userFound) {
+			user = {
+				username: userFound.username,
+				email: userFound.email,
+				_id: userFound._id.toString(),
+			};
+		}
+	} catch (error: any) {
+		console.error({ message: error.message });
+	}
+
+	if (!user) {
+		notFound();
+	}
+
 	return (
 		<div>
-			<Profile />
+			<Profile user={user} />
 			<Link href="/profile/character">
 				<Button>Fiche de personnage</Button>
 			</Link>

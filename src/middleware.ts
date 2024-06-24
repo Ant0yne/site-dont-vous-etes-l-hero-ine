@@ -1,7 +1,6 @@
-import { log } from "console";
-import { NextRequest, NextResponse } from "next/server";
+import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest, event: NextFetchEvent) {
 	if (req.url.includes("adventure")) {
 		const response = NextResponse.next();
 
@@ -12,9 +11,19 @@ export function middleware(req: NextRequest) {
 		});
 		return response;
 	}
+	if (req.url.includes("profile")) {
+		if (!req.cookies.has("next-auth.session-token")) {
+			return NextResponse.redirect(new URL("/", req.url));
+		}
+	}
+	if (req.url.includes("connection")) {
+		if (req.cookies.has("next-auth.session-token")) {
+			return NextResponse.redirect(new URL("/profile", req.url));
+		}
+	}
 	return null;
 }
 
 export const config = {
-	matcher: "/adventure/(.*)",
+	matcher: ["/adventure/(.*)", "/profile", "/connection"],
 };

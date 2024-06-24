@@ -1,6 +1,7 @@
+import bcrypt from "bcryptjs";
+
 import dbConnect from "@/lib/mongoDB/dbConnect";
 import User from "@/lib/mongoDB/models/User";
-import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
 	let { username, email, password } = await req.json();
@@ -16,6 +17,7 @@ export async function POST(req: Request) {
 		}
 
 		await User.create({ username, email, password });
+
 		return Response.json(`${username} is now register`, {
 			status: 200,
 			statusText: `${username} is now register`,

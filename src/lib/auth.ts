@@ -11,11 +11,12 @@ export const authOptions = {
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		}),
 		CredentialsProvider({
-			name: "identifiants",
+			name: "credentials",
 			credentials: {},
 			// FIXME: Types
 			async authorize(credentials: any) {
 				const { email, password } = credentials;
+
 				try {
 					await dbConnect();
 					const userFound = await User.findOne({ email });
@@ -70,15 +71,17 @@ export const authOptions = {
 							}),
 						});
 						if (res.ok) {
-							console.log(res.statusText);
+							return res;
 						} else {
 							console.error(res.statusText);
 						}
 					}
+					return user;
 				} catch (error) {
 					return console.error("Impossible to sign in", error);
 				}
 			}
+
 			return user;
 		},
 	},
