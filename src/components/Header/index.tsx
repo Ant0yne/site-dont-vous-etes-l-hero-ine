@@ -1,16 +1,17 @@
 // cSpell: words signup
+import dbConnect from "@/lib/mongoDB/dbConnect";
+import User from "@/lib/mongoDB/models/User";
+import { UserState } from "@/lib/stores/user-store";
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Waypoints } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import HeaderSignLogButton from "../HeaderSignLogButton";
 import LogoutButton from "../LogoutButton";
-import { UserState } from "@/lib/stores/user-store";
-import dbConnect from "@/lib/mongoDB/dbConnect";
-import User from "@/lib/mongoDB/models/User";
 
 const RootHeader = async () => {
 	const session = await getServerSession(authOptions);

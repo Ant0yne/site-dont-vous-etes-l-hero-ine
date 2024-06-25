@@ -1,10 +1,13 @@
 import Profile from "@/components/Profile";
 import { Button } from "@/components/ui/button";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const PageProfile = async () => {
-	// const session = await getServerSession(authOptions);
+	const session = await getServerSession(authOptions);
 	// let user: UserState | null = null;
 
 	// try {
@@ -27,6 +30,9 @@ const PageProfile = async () => {
 	// 	notFound();
 	// }
 
+	if (!session) {
+		redirect("/connection");
+	}
 	return (
 		<div>
 			<Profile />
