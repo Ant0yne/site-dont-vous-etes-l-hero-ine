@@ -1,5 +1,5 @@
-import { Schema, model, models } from "mongoose";
-import { TUser } from "@/lib/types";
+import mongoose, { Schema, model, models } from "mongoose";
+import type { TUser } from "@/lib/types";
 
 const userSchema = new Schema<TUser>(
 	{
@@ -13,6 +13,9 @@ const userSchema = new Schema<TUser>(
 		},
 		password: {
 			type: String,
+		},
+		characterId: {
+			type: mongoose.Schema.Types.ObjectId,
 		},
 	},
 	{ timestamps: true }

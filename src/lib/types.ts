@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { stepZod, stepsZod, testZod, userZod } from "./validations";
+import { characZod, stepZod, stepsZod, testZod, userZod } from "./validations";
 
 export type TVal<T> = { success: true; data: T };
 
@@ -12,3 +12,7 @@ export type TStepTest = z.infer<typeof testZod>;
 // USERS
 
 export type TUser = z.infer<typeof userZod>;
+
+// CHARACTER
+
+export type TCharacter = z.infer<typeof characZod>;

@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const SignUpForm = () => {
 	const [username, setUsername] = useState("");
@@ -49,10 +50,21 @@ const SignUpForm = () => {
 			});
 
 			if (res.ok) {
-				setUsername("");
-				setEmail("");
-				setPassword("");
-				router.push("/profile");
+				const connection = await signIn("credentials", {
+					email,
+					password,
+					redirect: false,
+				});
+				if (connection?.error) {
+					setError("Erreur de connexion");
+					return;
+				} else {
+					setUsername("");
+					setEmail("");
+					setPassword("");
+					router.replace("/profile");
+					router.refresh();
+				}
 			} else {
 				console.error(res.statusText);
 			}

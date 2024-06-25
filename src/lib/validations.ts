@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { z } from "zod";
 
 // STEPS
@@ -29,7 +30,15 @@ export const stepZod = z.object({
 export const userZod = z.object({
 	username: z.string(),
 	email: z.string(),
-	password: z.nullable(z.string()).optional(),
+	password: z.nullable(z.string()),
 	createdAt: z.date(),
 	updatedAt: z.date(),
+	characterId: z.nullable(z.custom<mongoose.Types.ObjectId>()),
+});
+
+// CHARACTER
+
+export const characZod = z.object({
+	characName: z.string(),
+	DEX: z.number(),
 });

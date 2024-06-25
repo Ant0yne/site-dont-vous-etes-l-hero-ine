@@ -27,6 +27,7 @@ const LoginForm = () => {
 				return;
 			} else {
 				router.replace("/profile");
+				router.refresh();
 			}
 		} catch (error) {
 			console.error("test", error);

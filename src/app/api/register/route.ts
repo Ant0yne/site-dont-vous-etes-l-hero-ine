@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 
 import dbConnect from "@/lib/mongoDB/dbConnect";
 import User from "@/lib/mongoDB/models/User";
+import Character from "@/lib/mongoDB/models/Character";
 
 export async function POST(req: Request) {
 	let { username, email, password } = await req.json();
@@ -16,7 +17,21 @@ export async function POST(req: Request) {
 			password = null;
 		}
 
-		await User.create({ username, email, password });
+		const user = await User.create({
+			username,
+			email,
+			password,
+			characterId: null,
+		});
+
+		const character = await Character.create({
+			characName: username,
+			DEX: 5,
+		});
+
+		user.characterId = character._id;
+
+		user.save();
 
 		return Response.json(`${username} is now register`, {
 			status: 200,
