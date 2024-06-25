@@ -23,7 +23,7 @@ const LogoutButton = ({ user }: { user: UserState | null }) => {
 
 	const handleSignOut = async () => {
 		const path = await signOut({ redirect: false, callbackUrl: pathname });
-		router.push(path.url);
+		router.push("/");
 		router.refresh();
 	};
 

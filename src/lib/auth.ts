@@ -1,4 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "./mongoDB/dbConnect";
 import User from "./mongoDB/models/User";
@@ -9,6 +10,10 @@ export const authOptions = {
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+		}),
+		Github({
+			clientId: process.env.GITHUB_CLIENT_ID!,
+			clientSecret: process.env.GITHUB_CLIENT_SECRET!,
 		}),
 		CredentialsProvider({
 			name: "credentials",
@@ -41,7 +46,7 @@ export const authOptions = {
 	// FIXME: param types
 	callbacks: {
 		async signIn({ user, account }: { user: any; account: any }) {
-			if (account.provider === "google") {
+			if (account.provider === "google" || account.provider === "github") {
 				const { name, email } = user;
 
 				try {
